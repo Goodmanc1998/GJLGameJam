@@ -4,97 +4,78 @@ using UnityEngine;
 
 public class Pedal : MonoBehaviour
 {
-    Vector3 mOffset;
-    float mZCoord;
-    float mXCoord;
 
-    float startingY;
     public float maxDepth;
-    [Range(0, 2)]
     public float returnSpeed;
-
+    float dist = 0;
 
     bool beingHeld = false;
 
-    public float normalDist;
+    Vector3 startingLocalPos;
+    Vector3 screenPoint;
+    Vector3 offset;
 
+    
 
     private void Start()
     {
-        startingY = transform.localPosition.y;
+        startingLocalPos = transform.position;
     }
 
-    public float GetNormalizedSpeed()
+    public float GetNormalizedDistance()
     {
-
-        float currDist = startingY - transform.position.y;
-
-        return currDist / maxDepth; 
+        return dist / maxDepth;
     }
 
     private void Update()
     {
 
-        normalDist = GetNormalizedSpeed();
+        dist = startingLocalPos.y - transform.position.y;
+
+        //Debug.Log("STARTING : " +startingLocalPos.y);
+        //Debug.Log("CURRENT : " + transform.position.y);
 
 
-        float dist = transform.localPosition.y - startingY;
-
-        if(!beingHeld && !Mathf.Approximately(0f, dist))
+        if (!beingHeld && dist > 0)
         {
             float delta = returnSpeed * Time.deltaTime;
 
-            if (transform.position.y < startingY)
-            {
-                Vector3 nPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + delta, transform.localPosition.z);
+            Vector3 nPos = new Vector3(transform.position.x, transform.position.y + delta, transform.position.z);
 
-                transform.localPosition = nPosition;
-            }
-            else
-                normalDist = 0;
+            nPos.y = Mathf.Clamp(nPos.y, startingLocalPos.y - maxDepth, startingLocalPos.y);
 
-            
+            transform.position = nPos;
         }
+        else if (dist < 0.05)
+        {
+            dist = 0;
+            Debug.Log("CLOSE ENOUGH");
+        }
+
+        Debug.Log("STARTING : " + dist);
+
     }
 
-
-
-    void OnMouseDown()
+    private void OnMouseDown()
     {
-        mZCoord = Camera.main.WorldToScreenPoint(transform.localPosition).z;
-        mXCoord = Camera.main.WorldToScreenPoint(transform.localPosition).x;
-
-        mOffset = gameObject.transform.localPosition - GetMouseAsWorldPoint();
-
         beingHeld = true;
+
+        screenPoint = Camera.main.WorldToScreenPoint(transform.position);
+        offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(screenPoint.x, Input.mousePosition.y, screenPoint.z));
     }
 
-    void OnMouseDrag()
+    private void OnMouseDrag()
     {
-        Vector3 nPosition = GetMouseAsWorldPoint() + mOffset;
+        Vector3 curScreenPoint = new Vector3(screenPoint.x, Input.mousePosition.y, screenPoint.z);
+        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 
-        nPosition.y = Mathf.Clamp(nPosition.y, startingY - maxDepth, startingY);
+        curPosition.y = Mathf.Clamp(curPosition.y, startingLocalPos.y - maxDepth, startingLocalPos.y);
 
-        transform.localPosition = nPosition;
-
-
+        transform.position = curPosition;
     }
 
-    private void OnMouseUp()
+    private void OnMouseExit()
     {
         beingHeld = false;
-    }
-
-    private Vector3 GetMouseAsWorldPoint()
-    {
-        // Pixel coordinates of mouse (x,y)
-        Vector3 mousePoint = Input.mousePosition;
-
-        // z coordinate of game object on screen
-        mousePoint.z = mZCoord;
-        mousePoint.x = mXCoord;
-
-        // Convert it to world points
-        return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 }
