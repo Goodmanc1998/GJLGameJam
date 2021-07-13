@@ -11,6 +11,9 @@ public class Car : MonoBehaviour
 
     public float movementSpeed;
     public float turningSpeed;
+
+    float turningValue;
+    float throttleValue;
     
 
     // Start is called before the first frame update
@@ -22,9 +25,13 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //throttleValue = gasPedal.GetNormalizedDistance() - brakePedal.GetNormalizedDistance();
+
         //transform.position += (transform.forward * (movementSpeed * gasPedal.GetNormalizedSpeed()) * Time.deltaTime);
 
         transform.position += transform.forward * ((movementSpeed * gasPedal.GetNormalizedDistance()) * Time.deltaTime);
         transform.Rotate((Vector3.up * wheel.GetNormalAngle() * turningSpeed) * Time.deltaTime);
+
+
     }
 }
