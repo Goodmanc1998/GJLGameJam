@@ -4,34 +4,53 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-
-    public SteeringWheel wheel;
+    public SteeringWheel steeringWheel;
     public Pedal gasPedal;
     public Pedal brakePedal;
 
-    public float movementSpeed;
-    public float turningSpeed;
+    public float acceleration, steering, brake;
 
-    float turningValue;
-    float throttleValue;
-    
+    float accNorm, steeringNorm, brakeNorm;
+
+    public WheelCollider fl, rl, fr, rr;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //throttleValue = gasPedal.GetNormalizedDistance() - brakePedal.GetNormalizedDistance();
+        accNorm = gasPedal.GetNormalizedDistance();
+        steeringNorm = steeringWheel.GetNormalAngle();
+        brakeNorm = brakePedal.GetNormalizedDistance();
 
-        //transform.position += (transform.forward * (movementSpeed * gasPedal.GetNormalizedSpeed()) * Time.deltaTime);
+    }
 
-        transform.position += transform.forward * ((movementSpeed * gasPedal.GetNormalizedDistance()) * Time.deltaTime);
-        transform.Rotate((Vector3.up * wheel.GetNormalAngle() * turningSpeed) * Time.deltaTime);
+    private void FixedUpdate()
+    {
 
+        Steer();
 
+        rl.motorTorque = accNorm * acceleration;
+        rr.motorTorque = accNorm * acceleration;
+
+        fl.brakeTorque = brakeNorm * brake;
+        fr.brakeTorque = brakeNorm * brake;
+        rl.brakeTorque = brakeNorm * brake;
+        rr.brakeTorque = brakeNorm * brake;
+
+    }
+
+    void Steer()
+    {
+        float nSteering = steeringNorm * steering;
+
+        fr.steerAngle = nSteering;
+        fl.steerAngle = nSteering;
     }
 }

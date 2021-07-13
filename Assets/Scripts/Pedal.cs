@@ -68,8 +68,6 @@ public class Pedal : MonoBehaviour
 
         screenPoint = Camera.main.WorldToScreenPoint(transform.position);
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(screenPoint.x, Input.mousePosition.y, screenPoint.z));
-
-        Debug.Log("Being Held");
     }
 
     private void OnMouseDrag()
