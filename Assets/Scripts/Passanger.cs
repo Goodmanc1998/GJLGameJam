@@ -1,0 +1,107 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Passanger : MonoBehaviour
+{
+
+    Location startingLocation = null;
+    Location finishingLocation;
+
+    public float minCarDistance;
+    public float minCarSpeed;
+
+    bool inCar;
+
+    Rigidbody player;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        SetLocations();
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void FixedUpdate()
+    {
+
+        if(!inCar)
+        {
+            if (Vector3.Distance(transform.position, player.position) < minCarDistance)
+            {
+                if (player.velocity.magnitude < minCarSpeed)
+                {
+                    if (player.GetComponent<Car>().GetPassanger() == null)
+                    {
+                        GetInCar();
+                    }
+                }
+            }
+        }
+
+
+        if(inCar)
+        {
+
+            transform.position = (player.position + (Vector3.up * 10));
+
+            if (Vector3.Distance(player.position, finishingLocation.GetLocationTransform().position) < minCarDistance)
+            {
+                if (player.velocity.magnitude < minCarSpeed)
+                {
+                    DropOff();
+                }
+            }
+
+        }
+
+
+        
+    }
+
+    void GetInCar()
+    {
+        //GET IN CAR
+        player.GetComponent<Car>().SetPassanger(this);
+
+        inCar = true;
+
+        Debug.Log("GET IN");
+    }
+
+    void DropOff()
+    {
+        player.GetComponent<Car>().SetPassanger(null);
+        player.transform.tag = "";
+        GameManager.onGameEvent(GameEvents.PASSANGER_DROPPED_OFF);
+        Debug.Log("IVE BEEN DROPPED OFF");
+        Destroy(this.gameObject);
+    }
+
+    void SetLocations()
+    {
+        startingLocation = LocationManager.Instance.GetRandomStartingLocation();
+
+        startingLocation.SetOccupied(true);
+
+        finishingLocation = LocationManager.Instance.GetRandomFinishingLocation(startingLocation);
+
+        transform.position = startingLocation.GetLocationTransform().position;
+        transform.rotation = startingLocation.transform.rotation;
+
+    }
+
+    public Transform GetDestination()
+    {
+        return finishingLocation.transform;
+    }
+
+}

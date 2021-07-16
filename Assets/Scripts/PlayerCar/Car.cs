@@ -4,53 +4,54 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    public SteeringWheel steeringWheel;
-    public Pedal gasPedal;
-    public Pedal brakePedal;
+    public CarController Controller;
+    public NavigationArrow navigation;
 
-    public float acceleration, steering, brake;
+    public Passanger currPassanger;
 
-    float accNorm, steeringNorm, brakeNorm;
-
-    public WheelCollider fl, rl, fr, rr;
-
-
-
-    // Start is called before the first frame update
-    void Start()
+    private static Car _instance;
+    public static Car Instance
     {
+        get
+        {
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        accNorm = gasPedal.GetNormalizedDistance();
-        steeringNorm = steeringWheel.GetNormalAngle();
-        brakeNorm = brakePedal.GetNormalizedDistance();
-
+        
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        if(currPassanger == null)
+        {
 
-        Steer();
-
-        rl.motorTorque = accNorm * acceleration;
-        rr.motorTorque = accNorm * acceleration;
-
-        fl.brakeTorque = brakeNorm * brake;
-        fr.brakeTorque = brakeNorm * brake;
-        rl.brakeTorque = brakeNorm * brake;
-        rr.brakeTorque = brakeNorm * brake;
-
+        }
+        
     }
 
-    void Steer()
+    public void SetPassanger(Passanger nPassanger)
     {
-        float nSteering = steeringNorm * steering;
-
-        fr.steerAngle = nSteering;
-        fl.steerAngle = nSteering;
+        currPassanger = nPassanger;
+        if(currPassanger != null)
+            navigation.UpdateDestination(currPassanger.GetDestination());
     }
+
+    public Passanger GetPassanger()
+    {
+        return currPassanger;
+    }
+
+
 }

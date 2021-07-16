@@ -8,7 +8,6 @@ public class AntiRollBar : MonoBehaviour
     public WheelCollider fl, fr;
     public float AntiRoll;
 
-    public float maxRoll;
     Rigidbody rb;
 
     // Start is called before the first frame update
@@ -16,7 +15,7 @@ public class AntiRollBar : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        rb.centerOfMass = new Vector3(0, -0.9f, 0);
+        rb.centerOfMass = new Vector3(0, -0.5f, 0);
     }
 
     private void FixedUpdate()
@@ -47,14 +46,6 @@ public class AntiRollBar : MonoBehaviour
 
         if (groundedR)
             rb.AddForceAtPosition(fr.transform.up * -antiRollForce, fr.transform.position);
-
-
-        if(Mathf.Abs(transform.rotation.z) >= maxRoll)
-        {
-            Quaternion nRot = transform.rotation;
-
-            nRot.z = Mathf.Clamp(nRot.y, -maxRoll, maxRoll);
-        }
 
     }
 }

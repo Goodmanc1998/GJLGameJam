@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
 {
-    public Transform[] spawnPositions;
+    GameObject[] spawnPositions;
     public GameObject player;
 
     // Start is called before the first frame update
@@ -19,19 +19,19 @@ public class PlayerSpawn : MonoBehaviour
         
     }
 
+
     void GetRandomSpawnLocation()
     {
+
+        spawnPositions = GameObject.FindGameObjectsWithTag("SpawnPositions");
+
         if (spawnPositions.Length > 1)
         {
             int randomPos = Random.Range(0, spawnPositions.Length);
 
-            player.transform.position = spawnPositions[randomPos].position;
-            player.transform.rotation = spawnPositions[randomPos].rotation;
-
-            Debug.Log(randomPos);
-
+            player.transform.position = spawnPositions[randomPos].transform.position;
+            player.transform.rotation = spawnPositions[randomPos].transform.rotation;
         }
-
 
     }
 }
