@@ -117,6 +117,9 @@ public class Passanger : MonoBehaviour
         player.GetComponent<Car>().SetPassanger(null);
         transform.tag = "Untagged";
         GameManager.onGameEvent(GameEvents.PASSANGER_DROPPED_OFF);
+
+        ScoreManager.Instance.IncreaseDistanceTravelled(travelDist);
+
         Debug.Log("IVE BEEN DROPPED OFF");
         Destroy(this.gameObject);
     }
@@ -139,6 +142,11 @@ public class Passanger : MonoBehaviour
     public Transform GetDestination()
     {
         return finishingLocation.transform;
+    }
+
+    public float GetDistance()
+    {
+        return travelDist;
     }
 
 }

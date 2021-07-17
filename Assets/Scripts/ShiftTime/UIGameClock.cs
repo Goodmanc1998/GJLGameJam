@@ -65,7 +65,7 @@ public class UIGameClock : MonoBehaviour
         if (currEvent == GameEvents.ENTERING_CAR)
             fairTime.color = new Color(fairTime.color.r, fairTime.color.g, fairTime.color.b, 1);
 
-        if (currEvent == GameEvents.PASSANGER_DROPPED_OFF)
+        if (currEvent == GameEvents.PASSANGER_DROPPED_OFF || currEvent == GameEvents.GAME_OVER)
             fairTime.color = new Color(fairTime.color.r, fairTime.color.g, fairTime.color.b, 0);
 
 

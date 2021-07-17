@@ -22,6 +22,8 @@ public class SteeringWheel : MonoBehaviour
 
     Vector2 centerPoint;
 
+    public bool active = true;
+
     private void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
@@ -110,7 +112,9 @@ public class SteeringWheel : MonoBehaviour
         if(!audioSource.isPlaying && wheelBeingHeld)
         {
             audioSource.Play();
-            GameManager.onGameEvent(GameEvents.CAR_HORN);
+
+            if(active)
+                GameManager.onGameEvent(GameEvents.CAR_HORN);
 
         }
     }

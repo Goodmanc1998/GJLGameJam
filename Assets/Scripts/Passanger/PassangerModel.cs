@@ -9,6 +9,7 @@ public class PassangerModel : MonoBehaviour
 
     bool male;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,6 @@ public class PassangerModel : MonoBehaviour
     {
 
         Vector3 player = new Vector3(Car.Instance.transform.position.x, transform.position.y, Car.Instance.transform.position.z);
-
 
         transform.LookAt(player);
     }

@@ -49,7 +49,15 @@ public class GameClock : MonoBehaviour
     {
         if(timeStart)
         {
-            shiftTimeLeft -= Time.deltaTime;
+            if(shiftTimeLeft <= 0 )
+            {
+                shiftTimeLeft = 0;
+            }
+            else
+            {
+                shiftTimeLeft -= Time.deltaTime;
+            }
+
         }
 
         if(timeStart && Car.Instance.GetPassanger() != null)
@@ -57,7 +65,8 @@ public class GameClock : MonoBehaviour
             dropOffTime -= Time.deltaTime;
         }
 
-        if(shiftTimeLeft <= 0 && timeStart || dropOffTime <= 0 && Car.Instance.GetPassanger() != null)
+
+        if(shiftTimeLeft <= 0 && Car.Instance.GetPassanger() == null || dropOffTime <= 0 && Car.Instance.GetPassanger() != null)
         {
             timeStart = false;
             GameManager.onGameEvent(GameEvents.GAME_OVER);
@@ -85,6 +94,11 @@ public class GameClock : MonoBehaviour
         return shiftTimeLeft % 60;
     }
 
+    public float GetFairTime()
+    {
+        return dropOffTime;
+    }
+
     public float GetMinuetsFairTime()
     {
         return Mathf.Floor(dropOffTime / 60);
@@ -94,4 +108,6 @@ public class GameClock : MonoBehaviour
     {
         return dropOffTime % 60;
     }
+
+
 }

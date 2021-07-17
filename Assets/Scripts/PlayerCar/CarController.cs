@@ -87,10 +87,18 @@ public class CarController : MonoBehaviour
     void Event(GameEvents currEvent)
     {
         if (currEvent == GameEvents.PLAYER_ACTIVE)
+        {
             active = true;
+            steeringWheel.active = true;
+        }
+            
 
         if (currEvent == GameEvents.GAME_OVER)
+        {
             active = false;
+            steeringWheel.active = false;
+        }
+            
     }
 
 }

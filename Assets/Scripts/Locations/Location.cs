@@ -17,17 +17,6 @@ public class Location : MonoBehaviour
     public locationType currentLocation;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public Transform GetLocationTransform()
     {
         return transform;

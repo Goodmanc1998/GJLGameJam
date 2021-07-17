@@ -8,6 +8,16 @@ public class NavigationArrow : MonoBehaviour
     Vector3 destinationPos;
     public float rotSpeed;
 
+    public Color green;
+    public Color red;
+    public Color idleColour;
+
+    public MeshRenderer navMesh;
+
+    float nDistance;
+    float currDistance;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,17 +28,39 @@ public class NavigationArrow : MonoBehaviour
     void Update()
     {
         if (Car.Instance.currPassanger == null)
+        {
             destinationPos = ClosestPassanger().position;
+            navMesh.material.color = idleColour;
+        }
+        else
+        {
+            UpdateColour();
+        }
+            
 
         targetDir = destinationPos - transform.position;
+
         float rotDistance = rotSpeed * Time.deltaTime;
 
         Vector3 newRot = Vector3.RotateTowards(transform.forward, targetDir, rotDistance, 0);
 
         transform.rotation = Quaternion.LookRotation(newRot);
 
-        
 
+
+    }
+
+    void UpdateColour()
+    {
+        nDistance = Car.Instance.GetPassanger().GetDistance();
+
+        currDistance = Vector3.Distance(transform.position, Car.Instance.GetPassanger().GetDestination().position);
+
+        float percent = currDistance / nDistance;
+
+        Color nColour = Color.Lerp(red, green, percent);
+
+        navMesh.material.color = nColour;
     }
 
     public Transform ClosestPassanger()
