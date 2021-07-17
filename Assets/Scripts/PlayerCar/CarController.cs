@@ -11,14 +11,18 @@ public class CarController : MonoBehaviour
 
     public float acceleration, steering, brake;
 
+    //EDIT Ben -- Added a velocity variable for the engine pitch and a ref to rb to get velocity
     float accNorm, steeringNorm, brakeNorm, dir;
+
+    public float velocity;
+    Rigidbody theCar;
 
     public WheelCollider fl, rl, fr, rr;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        theCar = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -29,6 +33,8 @@ public class CarController : MonoBehaviour
         brakeNorm = brakePedal.GetNormalizedDistance();
 
         dir = direction.GetDirection();
+
+        
 
     }
 
@@ -44,6 +50,8 @@ public class CarController : MonoBehaviour
         fr.brakeTorque = brakeNorm * brake;
         rl.brakeTorque = brakeNorm * brake;
         rr.brakeTorque = brakeNorm * brake;
+
+        velocity = theCar.velocity.magnitude;
 
     }
 
