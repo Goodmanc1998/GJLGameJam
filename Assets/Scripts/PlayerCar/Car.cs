@@ -46,10 +46,7 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
-        if(currPassanger == null)
-        {
 
-        }
         
     }
 

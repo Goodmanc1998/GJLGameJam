@@ -118,6 +118,8 @@ public class PassangerManager : MonoBehaviour
         {
             CreatePassanger();
         }
+
+        GameManager.onGameEvent(GameEvents.PLAYER_ACTIVE);
     }
 
     public List<Passanger> GetCurrentPassangers()

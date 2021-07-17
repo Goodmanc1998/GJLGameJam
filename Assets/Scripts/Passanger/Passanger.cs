@@ -11,11 +11,11 @@ public class Passanger : MonoBehaviour
     public float minCarDistance;
     public float minCarSpeed;
 
+    float travelDist;
+
     bool inCar = false;
-    bool goToCar;
 
     Rigidbody player;
-
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +76,8 @@ public class Passanger : MonoBehaviour
                 if (player.velocity.magnitude < minCarSpeed)
                 {
                     StartCoroutine(GettingInCar());
+
+                    
                 }
             }
     }
@@ -86,8 +88,10 @@ public class Passanger : MonoBehaviour
     IEnumerator GettingInCar()
     {
         float currScale = transform.localScale.y;
-        
-        while(currScale > 0)
+
+        GameClock.Instance.IncreaseTime(travelDist);
+
+        while (currScale > 0)
         {
             float scaleChange = 0.2f * Time.deltaTime;
 
@@ -100,8 +104,9 @@ public class Passanger : MonoBehaviour
         player.GetComponent<Car>().SetPassanger(this);
         startingLocation.SetOccupied(false);
         inCar = true;
-
+        
         GameManager.onGameEvent(GameEvents.ENTERING_CAR);
+
 
         yield return null;
 
@@ -126,6 +131,8 @@ public class Passanger : MonoBehaviour
 
         transform.position = startingLocation.GetLocationTransform().position;
         transform.rotation = startingLocation.transform.rotation;
+
+        travelDist = Vector3.Distance(startingLocation.transform.position, finishingLocation.transform.position);
 
     }
 
