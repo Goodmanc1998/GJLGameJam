@@ -11,7 +11,7 @@ public class Passanger : MonoBehaviour
     public float minCarDistance;
     public float minCarSpeed;
 
-    bool inCar;
+    bool inCar = false;
     bool goToCar;
 
     Rigidbody player;
@@ -24,7 +24,16 @@ public class Passanger : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
 
+    }
+
+    private void OnEnable()
+    {
         GameManager.onGameEvent += CheckCar;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameEvent -= CheckCar;
     }
 
     // Update is called once per frame
@@ -101,7 +110,7 @@ public class Passanger : MonoBehaviour
     void DropOff()
     {
         player.GetComponent<Car>().SetPassanger(null);
-        player.transform.tag = "";
+        transform.tag = "Untagged";
         GameManager.onGameEvent(GameEvents.PASSANGER_DROPPED_OFF);
         Debug.Log("IVE BEEN DROPPED OFF");
         Destroy(this.gameObject);

@@ -39,8 +39,6 @@ public class PassangerManager : MonoBehaviour
     void Start()
     {
         locationMGR = LocationManager.Instance;
-
-
     }
 
     // Update is called once per frame
@@ -64,8 +62,6 @@ public class PassangerManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Amount Removed : " + removed);
-
         if(removed > 0)
         {
             for (int i = 0; i <= removed - 1; i++)
@@ -73,14 +69,10 @@ public class PassangerManager : MonoBehaviour
                 CreatePassanger();
             }
         }
-
-
-
     }
 
     void CreatePassanger()
     {
-        Debug.Log("CREATE PASSANGER");
         GameObject nPassanger = Instantiate(passanger, new Vector3(0, -50, 0), Quaternion.identity);
     }
 
@@ -101,7 +93,6 @@ public class PassangerManager : MonoBehaviour
 
     void FirstSpawn()
     {
-
         for (int i = 0; i < maxPassangerAmount; i++)
         {
             CreatePassanger();

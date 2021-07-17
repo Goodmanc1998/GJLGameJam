@@ -32,6 +32,7 @@ public class LocationManager : MonoBehaviour
         GameManager.onGameEvent += GetLocations;
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
