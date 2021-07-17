@@ -21,6 +21,7 @@ public class DirectionalButton : MonoBehaviour
         source = gameObject.AddComponent<AudioSource>();
 
         source.playOnAwake = false;
+        source.clip = click;
     }
 
     // Update is called once per frame
@@ -43,7 +44,7 @@ public class DirectionalButton : MonoBehaviour
             txtField.text = "Forward";
         }
 
-
+        source.Play();
         
     }
 
