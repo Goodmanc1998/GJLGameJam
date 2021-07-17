@@ -7,6 +7,11 @@ using UnityEngine.Events;
 public class SteeringWheel : MonoBehaviour
 {
 
+    AudioSource audioSource;
+    public AudioClip horn;
+    public float hornDistance;
+    float currHornDist;
+
     public float maxTurningAngle;
     public float turningSpeed;
 
@@ -16,6 +21,12 @@ public class SteeringWheel : MonoBehaviour
     bool wheelBeingHeld = false;
 
     Vector2 centerPoint;
+
+    private void Start()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = horn;
+    }
 
     // Update is called once per frame
     void Update()
@@ -36,6 +47,10 @@ public class SteeringWheel : MonoBehaviour
 
         //Rotating the wheel
         transform.localEulerAngles = Vector3.back * wheelAngle;
+
+        if (currHornDist < hornDistance)
+            PlayHorn();
+
     }
 
     //Getters for wheel angle and normalized angle
@@ -53,6 +68,8 @@ public class SteeringWheel : MonoBehaviour
     private void OnMouseDrag()
     {
         Vector2 pointerPos = Input.mousePosition;
+
+        currHornDist = Vector2.Distance(pointerPos, centerPoint);
 
         float wheelNewAngle = Vector2.Angle(Vector2.up, pointerPos - centerPoint);
         //Check distance from center
@@ -78,10 +95,23 @@ public class SteeringWheel : MonoBehaviour
         centerPoint = Camera.main.WorldToScreenPoint(transform.position);
 
         prevWheelAngle = Vector2.Angle(Vector2.up, pointerPos - centerPoint);
+
+        currHornDist = Vector2.Distance(pointerPos, centerPoint);
     }
 
     private void OnMouseUp()
     {
         wheelBeingHeld = false;
+    }
+
+
+    void PlayHorn()
+    {
+        if(!audioSource.isPlaying && wheelBeingHeld)
+        {
+            audioSource.Play();
+            GameManager.onGameEvent(GameEvents.CAR_HORN);
+
+        }
     }
 }

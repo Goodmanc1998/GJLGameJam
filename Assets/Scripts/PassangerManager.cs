@@ -64,9 +64,11 @@ public class PassangerManager : MonoBehaviour
             }
         }
 
+        Debug.Log("Amount Removed : " + removed);
+
         if(removed > 0)
         {
-            for (int i = 0; i < removed - 1; i++)
+            for (int i = 0; i <= removed - 1; i++)
             {
                 CreatePassanger();
             }

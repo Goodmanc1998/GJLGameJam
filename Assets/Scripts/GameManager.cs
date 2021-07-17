@@ -8,7 +8,9 @@ public enum GameEvents
     LOCATIONS_COLLECTED,
     PASSANGERS_CREATED,
     PLAYER_CREATED,
-    PASSANGER_DROPPED_OFF
+    PASSANGER_DROPPED_OFF,
+    CAR_HORN,
+    ENTERING_CAR
 }
 
 public class GameManager : MonoBehaviour

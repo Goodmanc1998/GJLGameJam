@@ -12,6 +12,7 @@ public class Passanger : MonoBehaviour
     public float minCarSpeed;
 
     bool inCar;
+    bool goToCar;
 
     Rigidbody player;
 
@@ -22,6 +23,8 @@ public class Passanger : MonoBehaviour
         SetLocations();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+
+        GameManager.onGameEvent += CheckCar;
     }
 
     // Update is called once per frame
@@ -32,22 +35,6 @@ public class Passanger : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if(!inCar)
-        {
-            if (Vector3.Distance(transform.position, player.position) < minCarDistance)
-            {
-                if (player.velocity.magnitude < minCarSpeed)
-                {
-                    if (player.GetComponent<Car>().GetPassanger() == null)
-                    {
-                        GetInCar();
-                    }
-                }
-            }
-        }
-
-
         if(inCar)
         {
 
@@ -61,20 +48,54 @@ public class Passanger : MonoBehaviour
                 }
             }
 
-        }
+        } 
+    }
 
+
+
+
+    void CheckCar(GameEvents currEvent)
+    {
+
+        if (currEvent != GameEvents.CAR_HORN)
+            return;
+
+        if(player.GetComponent<Car>().GetPassanger() == null)
+        {
+            if (Vector3.Distance(transform.position, player.position) < minCarDistance)
+            {
+                if (player.velocity.magnitude < minCarSpeed)
+                {
+                    StartCoroutine(GettingInCar());
+                }
+            }
+    }
 
         
     }
 
-    void GetInCar()
+    IEnumerator GettingInCar()
     {
+        float currScale = transform.localScale.y;
+        
+        while(currScale > 0)
+        {
+            float scaleChange = 0.2f * Time.deltaTime;
+
+            currScale -= scaleChange;
+
+            transform.localScale = new Vector3(currScale, currScale, currScale);
+        }
+
         //GET IN CAR
         player.GetComponent<Car>().SetPassanger(this);
 
         inCar = true;
 
-        Debug.Log("GET IN");
+        GameManager.onGameEvent(GameEvents.ENTERING_CAR);
+
+        yield return null;
+
     }
 
     void DropOff()
