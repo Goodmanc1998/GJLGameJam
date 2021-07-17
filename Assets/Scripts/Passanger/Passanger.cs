@@ -11,11 +11,11 @@ public class Passanger : MonoBehaviour
     public float minCarDistance;
     public float minCarSpeed;
 
-    bool inCar;
-    bool goToCar;
+    float travelDist;
+
+    bool inCar = false;
 
     Rigidbody player;
-
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,16 @@ public class Passanger : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
 
+    }
+
+    private void OnEnable()
+    {
         GameManager.onGameEvent += CheckCar;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameEvent -= CheckCar;
     }
 
     // Update is called once per frame
@@ -67,6 +76,8 @@ public class Passanger : MonoBehaviour
                 if (player.velocity.magnitude < minCarSpeed)
                 {
                     StartCoroutine(GettingInCar());
+
+                    
                 }
             }
     }
@@ -77,8 +88,10 @@ public class Passanger : MonoBehaviour
     IEnumerator GettingInCar()
     {
         float currScale = transform.localScale.y;
-        
-        while(currScale > 0)
+
+        GameClock.Instance.IncreaseTime(travelDist);
+
+        while (currScale > 0)
         {
             float scaleChange = 0.2f * Time.deltaTime;
 
@@ -89,10 +102,11 @@ public class Passanger : MonoBehaviour
 
         //GET IN CAR
         player.GetComponent<Car>().SetPassanger(this);
-
+        startingLocation.SetOccupied(false);
         inCar = true;
-
+        
         GameManager.onGameEvent(GameEvents.ENTERING_CAR);
+
 
         yield return null;
 
@@ -101,7 +115,7 @@ public class Passanger : MonoBehaviour
     void DropOff()
     {
         player.GetComponent<Car>().SetPassanger(null);
-        player.transform.tag = "";
+        transform.tag = "Untagged";
         GameManager.onGameEvent(GameEvents.PASSANGER_DROPPED_OFF);
         Debug.Log("IVE BEEN DROPPED OFF");
         Destroy(this.gameObject);
@@ -117,6 +131,8 @@ public class Passanger : MonoBehaviour
 
         transform.position = startingLocation.GetLocationTransform().position;
         transform.rotation = startingLocation.transform.rotation;
+
+        travelDist = Vector3.Distance(startingLocation.transform.position, finishingLocation.transform.position);
 
     }
 

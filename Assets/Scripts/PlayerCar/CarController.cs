@@ -11,6 +11,8 @@ public class CarController : MonoBehaviour
 
     public float acceleration, steering, brake;
 
+    bool active = false;
+
     //EDIT Ben -- Added a velocity variable for the engine pitch and a ref to rb to get velocity
     float accNorm, steeringNorm, brakeNorm, dir;
 
@@ -18,6 +20,16 @@ public class CarController : MonoBehaviour
     Rigidbody theCar;
 
     public WheelCollider fl, rl, fr, rr;
+
+    private void OnEnable()
+    {
+        GameManager.onGameEvent += Event;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameEvent -= Event;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,13 +40,22 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        accNorm = gasPedal.GetNormalizedDistance();
-        steeringNorm = steeringWheel.GetNormalAngle();
-        brakeNorm = brakePedal.GetNormalizedDistance();
+        if(active)
+        {
+            accNorm = gasPedal.GetNormalizedDistance();
+            steeringNorm = steeringWheel.GetNormalAngle();
+            brakeNorm = brakePedal.GetNormalizedDistance();
 
-        dir = direction.GetDirection();
+            dir = direction.GetDirection();
+        }
+        else
+        {
+            accNorm = 0;
+            steeringNorm = 0;
+            brakeNorm = 1;
 
-        
+            dir = 0;
+        }
 
     }
 
@@ -61,6 +82,15 @@ public class CarController : MonoBehaviour
 
         fr.steerAngle = nSteering;
         fl.steerAngle = nSteering;
+    }
+
+    void Event(GameEvents currEvent)
+    {
+        if (currEvent == GameEvents.PLAYER_ACTIVE)
+            active = true;
+
+        if (currEvent == GameEvents.GAME_OVER)
+            active = false;
     }
 
 }

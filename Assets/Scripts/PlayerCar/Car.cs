@@ -33,20 +33,20 @@ public class Car : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        GameManager.onGameEvent -= GettingInCar;
+    }
+
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
-
-
     }
 
     private void Update()
     {
-        if(currPassanger == null)
-        {
 
-        }
         
     }
 
@@ -88,8 +88,6 @@ public class Car : MonoBehaviour
             audioSource.clip = clip;
 
             audioSource.Play();
-
-            Debug.Log(audioSource.clip.name);
 
             yield return new WaitForSeconds(clip.length);
         }

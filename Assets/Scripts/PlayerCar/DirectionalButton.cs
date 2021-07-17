@@ -10,12 +10,18 @@ public class DirectionalButton : MonoBehaviour
 
     TMP_Text txtField;
 
+    public AudioClip click;
+    AudioSource source;
+
     // Start is called before the first frame update
     void Start()
     {
-        currDir = -1;
+        currDir = 1;
         txtField = gameObject.GetComponentInChildren<TMP_Text>();
-        ChangeDir();
+        source = gameObject.AddComponent<AudioSource>();
+
+        source.playOnAwake = false;
+        source.clip = click;
     }
 
     // Update is called once per frame
@@ -38,26 +44,15 @@ public class DirectionalButton : MonoBehaviour
             txtField.text = "Forward";
         }
 
+        source.Play();
         
     }
 
-    public void ChangeDir()
-    {
-        if (currDir == 1)
-        {
-            currDir = -1;
-            txtField.text = "Reverse";
-
-        }
-        else
-        {
-            currDir = 1;
-            txtField.text = "Forward";
-        }
-    }
 
     public float GetDirection()
     {
         return currDir;
     }
+
+
 }
