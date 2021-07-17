@@ -28,17 +28,22 @@ public class LocationManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
 
+    private void OnEnable()
+    {
         GameManager.onGameEvent += GetLocations;
     }
 
+    private void OnDisable()
+    {
+        GameManager.onGameEvent -= GetLocations;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
 
-
-        
     }
 
     // Update is called once per frame
@@ -84,7 +89,7 @@ public class LocationManager : MonoBehaviour
         {
             int rndNo = Random.Range(0, startingLocations.Count);
 
-            if(!startingLocations[rndNo].GetOccupied() && Vector3.Distance(startingLocations[rndNo].transform.position, playerPos.position) < 500)
+            if (!startingLocations[rndNo].GetOccupied() && Vector3.Distance(startingLocations[rndNo].transform.position, playerPos.position) < PassangerManager.Instance.GetMaxSpawnDistance())
             {
                 locationToReturn = startingLocations[rndNo];
             }

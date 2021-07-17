@@ -7,6 +7,7 @@ public class PassangerManager : MonoBehaviour
 
     public int maxPassangerAmount;
     public float despawnDistance;
+    public float spawnDistance;
     int currentPassangerAmount;
 
     LocationManager locationMGR;
@@ -31,8 +32,16 @@ public class PassangerManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
 
+    private void OnEnable()
+    {
         GameManager.onGameEvent += Event;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameEvent -= Event;
     }
 
     // Start is called before the first frame update
@@ -62,13 +71,25 @@ public class PassangerManager : MonoBehaviour
             }
         }
 
-        if(removed > 0)
+        if (removed > 0)
         {
             for (int i = 0; i <= removed - 1; i++)
             {
                 CreatePassanger();
             }
         }
+
+        int missing = maxPassangerAmount - currPassangers.Count;
+
+        if (missing > 0)
+        {
+            for (int i = 0; i < missing; i++)
+            {
+                CreatePassanger();
+            }
+
+        }
+
     }
 
     void CreatePassanger()
@@ -110,6 +131,11 @@ public class PassangerManager : MonoBehaviour
             currPass.Add(g.GetComponent<Passanger>());
         }
         return currPass;
+    }
+
+    public float GetMaxSpawnDistance()
+    {
+        return spawnDistance;
     }
 
 }

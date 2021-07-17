@@ -98,7 +98,7 @@ public class Passanger : MonoBehaviour
 
         //GET IN CAR
         player.GetComponent<Car>().SetPassanger(this);
-
+        startingLocation.SetOccupied(false);
         inCar = true;
 
         GameManager.onGameEvent(GameEvents.ENTERING_CAR);

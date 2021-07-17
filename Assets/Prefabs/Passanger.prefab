@@ -109,5 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4149a7f216262ba45885059fb6b623cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCarDistance: 5
+  minCarDistance: 15
   minCarSpeed: 2.5
