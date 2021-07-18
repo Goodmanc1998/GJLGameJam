@@ -93,19 +93,15 @@ public class LocationManager : MonoBehaviour
 
             float distToPlayer = Vector3.Distance(startingLocations[rndNo].transform.position, playerPos.position);
 
-            Debug.Log(playerPos.position);
-
             if (!startingLocations[rndNo].GetOccupied()  && distToPlayer > 20)
             {
                 if (distToPlayer < PassangerManager.Instance.GetMaxSpawnDistance())
                 {
-                    Debug.Log(startingLocations[rndNo].transform.position);
                     locationToReturn = startingLocations[rndNo];
                 }
                 
             }
         }
-
 
         return locationToReturn;
     }

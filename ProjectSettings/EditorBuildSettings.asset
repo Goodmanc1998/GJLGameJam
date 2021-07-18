@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ConnorTestScene.unity
-    guid: 4ae34f09a6a1a554cad952c6a54e76fe
-  - enabled: 1
     path: Assets/Scenes/Main_Menu.unity
     guid: 5decab61a867a74469be2690dffd5808
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: a086e049516587f4d95874f9c09daad9
   m_configObjects: {}
