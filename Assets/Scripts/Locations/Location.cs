@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Location : MonoBehaviour
 {
-    public string name;
+
+    public LocationPointer pointerArrow;
+
     bool occupied = false;
 
     public enum locationArea
@@ -32,7 +34,6 @@ public class Location : MonoBehaviour
 
     public locationType currentLocation;
 
-
     public Transform GetLocationTransform()
     {
         return transform;
@@ -51,6 +52,25 @@ public class Location : MonoBehaviour
     public void SetOccupied(bool nBool)
     {
         occupied = nBool;
+
+        if (nBool)
+        {
+            pointerArrow.UpdatePassanger();
+        }
+        else
+        {
+            SetUnActive();
+        }
+    }
+
+    public void SetDestination()
+    {
+        pointerArrow.UpdateDestination();
+    }
+
+    public void SetUnActive()
+    {
+        pointerArrow.UpdateUnActive();
     }
 
 

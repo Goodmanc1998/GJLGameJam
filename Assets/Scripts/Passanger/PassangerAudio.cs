@@ -33,7 +33,7 @@ public class PassangerAudio : MonoBehaviour
         }
     }
 
-    public AudioClip GetPassangerAudio(bool male, Location.locationArea destination)
+    public AudioClip GetDestinationAudio(bool male, Location.locationArea destination)
     {
         AudioClip nClip = null;
 
