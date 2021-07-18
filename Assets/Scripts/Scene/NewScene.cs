@@ -20,14 +20,18 @@ public class NewScene : MonoBehaviour
     void GetButton()
     {
         btn = gameObject.GetComponent<Button>();
-
-        btn.onClick.AddListener(ChangeScene);
     }
 
     public void ChangeScene()
     {
-        if(!quit)
+        if (!quit)
+        {
             SceneController.Instance.UpdateScene(newScene);
+        }
+        else
+            SceneController.Instance.QuitApplication();
+
+
     }
 
     

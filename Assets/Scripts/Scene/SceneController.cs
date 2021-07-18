@@ -30,4 +30,9 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene(nScene);
     }
+
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
 }
