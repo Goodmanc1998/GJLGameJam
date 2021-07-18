@@ -11,10 +11,22 @@ public class Location : MonoBehaviour
 
     public enum locationArea
     {
+        Null,
         Downtown,
         Residential,
+        OldTown,
+        Office,
         Bank,
-        Gym
+        Gym,
+        CoffeeShop,
+        BarberShop,
+        Club,
+        BigMall,
+        MidTown,
+        NorthPark,
+        SouthPark,
+        Cinema,
+        WaterFront
 
     }
 
@@ -70,7 +82,8 @@ public class Location : MonoBehaviour
 
     public void SetUnActive()
     {
-        pointerArrow.UpdateUnActive();
+        if(!occupied)
+            pointerArrow.UpdateUnActive();
     }
 
 

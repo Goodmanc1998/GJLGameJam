@@ -9,6 +9,16 @@ public class ScoreUI : MonoBehaviour
 
     ScoreManager score;
 
+    private void OnEnable()
+    {
+        GameManager.onGameEvent += Event;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameEvent -= Event;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +31,12 @@ public class ScoreUI : MonoBehaviour
         ScoreText.text = "SCORE : " + score.currentScore;
     }
 
+    void Event(GameEvents currEvent)
+    {
+        if (currEvent != GameEvents.GAME_OVER)
+            return;
+
+        ScoreText.gameObject.SetActive(false);
+    }
 
 }

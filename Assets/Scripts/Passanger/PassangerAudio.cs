@@ -2,19 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class PassangerAudio : MonoBehaviour
 {
-    public AudioClip[] DowntownMale;
-    public AudioClip[] DowntownFemale;
 
-    public AudioClip[] ResidentialMale;
-    public AudioClip[] ResidentialFemale;
+    [System.Serializable]
+    public struct AudioLocation
+    {
+        public AudioClip[] male;
+        public AudioClip[] female;
+    }
 
-    public AudioClip[] BankMale;
-    public AudioClip[] BankFemale;
-
-    public AudioClip[] GymMale;
-    public AudioClip[] GymFemale;
+    public AudioLocation Downtown;
+    public AudioLocation Residential;
+    public AudioLocation OldTown;
+    public AudioLocation Office;
+    public AudioLocation Bank;
+    public AudioLocation Gym;
+    public AudioLocation CoffeShop;
+    public AudioLocation BarberShop;
+    public AudioLocation Club;
+    public AudioLocation BigMall;
+    public AudioLocation MidTown;
+    public AudioLocation NorthPark;
+    public AudioLocation SouthPark;
+    public AudioLocation Cinema;
+    public AudioLocation WaterFront;
 
     private static PassangerAudio _instance;
     public static PassangerAudio Instance
@@ -37,66 +51,232 @@ public class PassangerAudio : MonoBehaviour
     {
         AudioClip nClip = null;
 
-        if(male)
+
+        if (destination == Location.locationArea.Downtown)
         {
-            if(destination == Location.locationArea.Bank)
+            if (male)
             {
-                int rndNo = Random.Range(0, BankMale.Length);
+                int rndNo = Random.Range(0, Downtown.male.Length);
 
-                nClip = BankMale[rndNo];
+                nClip = Downtown.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, Downtown.female.Length);
+
+                nClip = Downtown.female[rndNo];
             }
 
-            if (destination == Location.locationArea.Downtown)
+        }
+        else if (destination == Location.locationArea.Residential)
+        {
+            if (male)
             {
-                int rndNo = Random.Range(0, DowntownMale.Length);
+                int rndNo = Random.Range(0, Residential.male.Length);
 
-                nClip = DowntownMale[rndNo];
+                nClip = Residential.male[rndNo];
             }
-
-            if (destination == Location.locationArea.Gym)
+            else
             {
-                int rndNo = Random.Range(0, GymMale.Length);
+                int rndNo = Random.Range(0, Residential.female.Length);
 
-                nClip = GymMale[rndNo];
-            }
-
-            if (destination == Location.locationArea.Residential)
-            {
-                int rndNo = Random.Range(0, ResidentialMale.Length);
-
-                nClip = ResidentialMale[rndNo];
+                nClip = Downtown.female[rndNo];
             }
         }
-        else
+        else if (destination == Location.locationArea.OldTown)
         {
-            if (destination == Location.locationArea.Bank)
+            if (male)
             {
-                int rndNo = Random.Range(0, BankFemale.Length);
+                int rndNo = Random.Range(0, OldTown.male.Length);
 
-                nClip = BankMale[rndNo];
+                nClip = OldTown.male[rndNo];
             }
-
-            if (destination == Location.locationArea.Downtown)
+            else
             {
-                int rndNo = Random.Range(0, DowntownFemale.Length);
+                int rndNo = Random.Range(0, OldTown.female.Length);
 
-                nClip = DowntownMale[rndNo];
+                nClip = OldTown.female[rndNo];
             }
-
-            if (destination == Location.locationArea.Gym)
+        }
+        else if (destination == Location.locationArea.Office)
+        {
+            if (male)
             {
-                int rndNo = Random.Range(0, GymFemale.Length);
+                int rndNo = Random.Range(0, Office.male.Length);
 
-                nClip = GymMale[rndNo];
+                nClip = Office.male[rndNo];
             }
-
-            if (destination == Location.locationArea.Residential)
+            else
             {
-                int rndNo = Random.Range(0, ResidentialFemale.Length);
+                int rndNo = Random.Range(0, Office.female.Length);
 
-                nClip = ResidentialMale[rndNo];
+                nClip = Office.female[rndNo];
             }
+        }
+        else if (destination == Location.locationArea.Bank)
+        {
+            if (male)
+            {
+                int rndNo = Random.Range(0, Bank.male.Length);
 
+                nClip = Bank.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, Bank.female.Length);
+
+                nClip = Bank.female[rndNo];
+            }
+        }
+        else if (destination == Location.locationArea.Gym)
+        {
+            if (male)
+            {
+                int rndNo = Random.Range(0, Gym.male.Length);
+
+                nClip = Gym.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, Gym.female.Length);
+
+                nClip = Gym.female[rndNo];
+            }
+        }
+        else if (destination == Location.locationArea.CoffeeShop)
+        {
+            if(male)
+            {
+                int rndNo = Random.Range(0, CoffeShop.male.Length);
+
+                nClip = CoffeShop.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, CoffeShop.female.Length);
+
+                nClip = CoffeShop.female[rndNo];
+            }
+        }
+        else if (destination == Location.locationArea.BarberShop)
+        {
+            if (male)
+            {
+                int rndNo = Random.Range(0, BarberShop.male.Length);
+
+                nClip = BarberShop.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, BarberShop.female.Length);
+
+                nClip = BarberShop.female[rndNo];
+            }
+        }
+        else if (destination == Location.locationArea.Club)
+        {
+            if (male)
+            {
+                int rndNo = Random.Range(0, Club.male.Length);
+
+                nClip = Club.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, Club.female.Length);
+
+                nClip = Club.female[rndNo];
+            }
+        }
+        else if (destination == Location.locationArea.BigMall)
+        {
+            if (male)
+            {
+                int rndNo = Random.Range(0, BigMall.male.Length);
+
+                nClip = BigMall.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, BigMall.female.Length);
+
+                nClip = BigMall.female[rndNo];
+            }
+        }
+        else if (destination == Location.locationArea.MidTown)
+        {
+            if (male)
+            {
+                int rndNo = Random.Range(0, MidTown.male.Length);
+
+                nClip = MidTown.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, MidTown.female.Length);
+
+                nClip = MidTown.female[rndNo];
+            }
+        }
+        else if (destination == Location.locationArea.NorthPark)
+        {
+            if (male)
+            {
+                int rndNo = Random.Range(0, NorthPark.male.Length);
+
+                nClip = NorthPark.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, NorthPark.female.Length);
+
+                nClip = NorthPark.female[rndNo];
+            }
+        }
+        else if (destination == Location.locationArea.SouthPark)
+        {
+            if (male)
+            {
+                int rndNo = Random.Range(0, SouthPark.male.Length);
+
+                nClip = SouthPark.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, SouthPark.female.Length);
+
+                nClip = SouthPark.female[rndNo];
+            }
+        }
+        else if (destination == Location.locationArea.Cinema)
+        {
+            if (male)
+            {
+                int rndNo = Random.Range(0, Cinema.male.Length);
+
+                nClip = Cinema.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, Cinema.female.Length);
+
+                nClip = Cinema.female[rndNo];
+            }
+        }
+        else if (destination == Location.locationArea.WaterFront)
+        {
+            if (male)
+            {
+                int rndNo = Random.Range(0, WaterFront.male.Length);
+
+                nClip = WaterFront.male[rndNo];
+            }
+            else
+            {
+                int rndNo = Random.Range(0, WaterFront.female.Length);
+
+                nClip = WaterFront.female[rndNo];
+            }
         }
 
         return nClip;

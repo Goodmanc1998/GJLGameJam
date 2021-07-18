@@ -68,6 +68,12 @@ public class UIGameClock : MonoBehaviour
         if (currEvent == GameEvents.PASSANGER_DROPPED_OFF || currEvent == GameEvents.GAME_OVER)
             fairTime.color = new Color(fairTime.color.r, fairTime.color.g, fairTime.color.b, 0);
 
+        if(currEvent == GameEvents.GAME_OVER)
+        {
+            fairTime.color = new Color(fairTime.color.r, fairTime.color.g, fairTime.color.b, 0);
+            shiftTime.color = new Color(fairTime.color.r, fairTime.color.g, fairTime.color.b, 0);
+        }
+
 
     }
 
