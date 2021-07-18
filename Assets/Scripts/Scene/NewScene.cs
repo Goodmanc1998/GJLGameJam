@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class NewScene : MonoBehaviour
 {
     public bool button = false;
+    public bool quit;
     public string newScene;
 
     Button btn;
@@ -25,7 +26,8 @@ public class NewScene : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneController.Instance.UpdateScene(newScene);
+        if(!quit)
+            SceneController.Instance.UpdateScene(newScene);
     }
 
     
