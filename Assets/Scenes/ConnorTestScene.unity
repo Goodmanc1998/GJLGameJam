@@ -3362,8 +3362,10 @@ MonoBehaviour:
     female:
     - {fileID: 8300000, guid: 7c8110a626ecc8a48be9876730a5f710, type: 3}
   Office:
-    male: []
-    female: []
+    male:
+    - {fileID: 8300000, guid: 98bdcc5042396ea439f3ec84f79766ed, type: 3}
+    female:
+    - {fileID: 8300000, guid: 1de6a7d2338169540918c4a96bd35638, type: 3}
   Bank:
     male:
     - {fileID: 8300000, guid: 2b4b5f2cb27cd3f4480d196f10a1bce3, type: 3}
@@ -3681,7 +3683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8596f80e40167b74c8c959bedba46d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3260652276856369446}
 --- !u!4 &1414422198
 Transform:
   m_ObjectHideFlags: 0
