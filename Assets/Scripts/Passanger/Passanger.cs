@@ -22,7 +22,7 @@ public class Passanger : MonoBehaviour
     {
         SetLocations();
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        player = Car.Instance.GetComponent<Rigidbody>();
 
     }
 
