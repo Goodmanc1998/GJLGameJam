@@ -76,12 +76,14 @@ public class LocationManager : MonoBehaviour
 
         }
 
+        Debug.Log(locations.Length);
+
         GameManager.onGameEvent(GameEvents.LOCATIONS_COLLECTED);
     }
 
     public Location GetRandomStartingLocation()
     {
-        Transform playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        Transform playerPos = Car.Instance.transform;
 
         Location locationToReturn = null;
 
@@ -89,9 +91,18 @@ public class LocationManager : MonoBehaviour
         {
             int rndNo = Random.Range(0, startingLocations.Count);
 
-            if (!startingLocations[rndNo].GetOccupied() && Vector3.Distance(startingLocations[rndNo].transform.position, playerPos.position) < PassangerManager.Instance.GetMaxSpawnDistance() && Vector3.Distance(startingLocations[rndNo].transform.position, playerPos.position) > 20)
+            float distToPlayer = Vector3.Distance(startingLocations[rndNo].transform.position, playerPos.position);
+
+            Debug.Log(playerPos.position);
+
+            if (!startingLocations[rndNo].GetOccupied()  && distToPlayer > 20)
             {
-                locationToReturn = startingLocations[rndNo];
+                if (distToPlayer < PassangerManager.Instance.GetMaxSpawnDistance())
+                {
+                    Debug.Log(startingLocations[rndNo].transform.position);
+                    locationToReturn = startingLocations[rndNo];
+                }
+                
             }
         }
 

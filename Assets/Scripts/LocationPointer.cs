@@ -28,22 +28,17 @@ public class LocationPointer : MonoBehaviour
     public void UpdateDestination()
     {
         meshRenderer.material.color = desination;
-        Debug.Log("SET TO DESTINATION");
     }
 
     public void UpdatePassanger()
     {
         meshRenderer.material.color = passanger;
-        Debug.Log("SET TO Passanger");
 
     }
 
     public void UpdateUnActive()
     {
         meshRenderer.material.color = unActive;
-        Debug.Log("SET TO Unactive");
-
-
     }
 
 
