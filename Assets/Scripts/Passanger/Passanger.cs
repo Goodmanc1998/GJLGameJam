@@ -139,6 +139,11 @@ public class Passanger : MonoBehaviour
 
     }
 
+    public Location GetFinishingLocation()
+    {
+        return finishingLocation;
+    }
+
     public Transform GetDestination()
     {
         return finishingLocation.transform;

@@ -7,6 +7,22 @@ public class Location : MonoBehaviour
     public string name;
     bool occupied = false;
 
+    public enum locationArea
+    {
+        Downtown,
+        Residential,
+        Bank,
+        Gym
+
+    }
+
+    public locationArea location;
+
+    public locationArea GetLocationArea()
+    {
+        return location;
+    }
+
     public enum locationType
     {
         Starting,

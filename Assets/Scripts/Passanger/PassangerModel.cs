@@ -7,7 +7,7 @@ public class PassangerModel : MonoBehaviour
     public GameObject[] maleCharacters;
     public GameObject[] femaleCharacters;
 
-    bool male;
+    public bool male;
 
 
     // Start is called before the first frame update
