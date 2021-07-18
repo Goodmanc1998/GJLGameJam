@@ -67,7 +67,7 @@ public class Car : MonoBehaviour
         
         if (currEvent == GameEvents.ENTERING_CAR)
         {
-            AudioClip[] clipArray = new AudioClip[] { doorOpening, doorClosing, seatbelt, PassangerAudio.Instance.GetPassangerAudio(currPassanger.GetComponent<PassangerModel>().male, currPassanger.GetFinishingLocation().GetLocationArea()) };
+            AudioClip[] clipArray = new AudioClip[] { doorOpening, doorClosing, seatbelt, PassangerAudio.Instance.GetDestinationAudio(currPassanger.GetComponentInChildren<PassangerModel>().male, currPassanger.GetFinishingLocation().GetLocationArea()) };
             StartCoroutine(PlaySoundArray(clipArray));
         }
         else if(currEvent == GameEvents.PASSANGER_DROPPED_OFF)

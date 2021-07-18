@@ -89,7 +89,7 @@ public class LocationManager : MonoBehaviour
         {
             int rndNo = Random.Range(0, startingLocations.Count);
 
-            if (!startingLocations[rndNo].GetOccupied() && Vector3.Distance(startingLocations[rndNo].transform.position, playerPos.position) < PassangerManager.Instance.GetMaxSpawnDistance())
+            if (!startingLocations[rndNo].GetOccupied() && Vector3.Distance(startingLocations[rndNo].transform.position, playerPos.position) < PassangerManager.Instance.GetMaxSpawnDistance() && Vector3.Distance(startingLocations[rndNo].transform.position, playerPos.position) > 20)
             {
                 locationToReturn = startingLocations[rndNo];
             }

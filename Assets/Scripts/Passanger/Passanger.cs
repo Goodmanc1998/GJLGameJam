@@ -102,9 +102,10 @@ public class Passanger : MonoBehaviour
 
         //GET IN CAR
         player.GetComponent<Car>().SetPassanger(this);
-        startingLocation.SetOccupied(false);
         inCar = true;
-        
+        finishingLocation.SetDestination();
+        startingLocation.SetOccupied(false);
+
         GameManager.onGameEvent(GameEvents.ENTERING_CAR);
 
 
@@ -116,10 +117,12 @@ public class Passanger : MonoBehaviour
     {
         player.GetComponent<Car>().SetPassanger(null);
         transform.tag = "Untagged";
+
+        finishingLocation.SetUnActive();
+
         GameManager.onGameEvent(GameEvents.PASSANGER_DROPPED_OFF);
-
         ScoreManager.Instance.IncreaseDistanceTravelled(travelDist);
-
+        
         Debug.Log("IVE BEEN DROPPED OFF");
         Destroy(this.gameObject);
     }

@@ -79,8 +79,6 @@ public class GameClock : MonoBehaviour
     {
         float nTime = distance * increasePerDistance;
 
-        Debug.Log("New Time : " + nTime);
-
         dropOffTime = nTime;
     }
 
