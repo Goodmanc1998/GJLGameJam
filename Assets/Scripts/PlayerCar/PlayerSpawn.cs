@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerSpawn : MonoBehaviour
 {
     GameObject[] spawnPositions;
-    public GameObject player;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = Car.Instance.gameObject;
         GetRandomSpawnLocation(); 
     }
 

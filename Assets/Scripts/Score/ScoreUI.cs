@@ -28,7 +28,7 @@ public class ScoreUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScoreText.text = "SCORE : " + score.currentScore;
+        ScoreText.text = "SCORE : " + Mathf.RoundToInt(score.currentScore);
     }
 
     void Event(GameEvents currEvent)

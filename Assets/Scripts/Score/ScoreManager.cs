@@ -69,6 +69,7 @@ public class ScoreManager : MonoBehaviour
             IncreaseScore(nScore);
 
         IncreaseScore(nScore * passangersDroppedOff);
+
     }
 
     public void IncreaseDistanceTravelled(float nScore)
