@@ -42,7 +42,13 @@ public class CarController : MonoBehaviour
     {
         if(active)
         {
-            accNorm = gasPedal.GetNormalizedDistance();
+            if (theCar.velocity.magnitude < 15)
+            {
+                accNorm = gasPedal.GetNormalizedDistance();
+            }
+            else
+                accNorm = 0;
+
             steeringNorm = steeringWheel.GetNormalAngle();
             brakeNorm = brakePedal.GetNormalizedDistance();
 
