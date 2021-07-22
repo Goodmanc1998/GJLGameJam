@@ -807,75 +807,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopForTrafficLight: 0
---- !u!1 &815778068446846501
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4344671068709010971}
-  - component: {fileID: 9103806592462338821}
-  - component: {fileID: 8738336162068338340}
-  m_Layer: 0
-  m_Name: AITrafficWaypointRoute
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4344671068709010971
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815778068446846501}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000030517578}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1646391619269826013}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9103806592462338821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815778068446846501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AITrafficGizmoSettings: {fileID: 11400000, guid: 11e40ae9f0b146a6ae922fd037a04cec, type: 2}
-  waypointDataList:
-  - _name: AITrafficWaypoint 1
-    _transform: {fileID: 0}
-    _waypoint: {fileID: 0}
-  useSpawnPoints: 0
-  spawnTrafficVehicles: []
-  routeInfo: {fileID: 0}
-  maxDensity: 10
-  currentDensity: 0
-  previousDensity: 0
-  spawnpoints: []
---- !u!114 &8738336162068338340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815778068446846501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopForTrafficLight: 0
 --- !u!1 &948532697569656206
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,10 +2631,6 @@ Transform:
   - {fileID: 1268377624519911341}
   - {fileID: 6925735137599443489}
   - {fileID: 4420853134584373547}
-  - {fileID: 8219260640939256618}
-  - {fileID: 2165572667551870188}
-  - {fileID: 5020570043257846809}
-  - {fileID: 4344671068709010971}
   - {fileID: 7123647441718804673}
   - {fileID: 1633259950692856885}
   - {fileID: 3278933217910510111}
@@ -3077,75 +3004,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &5252090708868162814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8219260640939256618}
-  - component: {fileID: 3629740478094831514}
-  - component: {fileID: 4045693489215839518}
-  m_Layer: 0
-  m_Name: AITrafficWaypointRoute
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8219260640939256618
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5252090708868162814}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000030517578}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1646391619269826013}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3629740478094831514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5252090708868162814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AITrafficGizmoSettings: {fileID: 11400000, guid: 11e40ae9f0b146a6ae922fd037a04cec, type: 2}
-  waypointDataList:
-  - _name: AITrafficWaypoint 1
-    _transform: {fileID: 0}
-    _waypoint: {fileID: 0}
-  useSpawnPoints: 0
-  spawnTrafficVehicles: []
-  routeInfo: {fileID: 0}
-  maxDensity: 10
-  currentDensity: 0
-  previousDensity: 0
-  spawnpoints: []
---- !u!114 &4045693489215839518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5252090708868162814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopForTrafficLight: 0
 --- !u!1 &5455268809149039600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3503,75 +3361,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &6280720250618999434
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2165572667551870188}
-  - component: {fileID: 848155543013578792}
-  - component: {fileID: 874354039681681209}
-  m_Layer: 0
-  m_Name: AITrafficWaypointRoute
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2165572667551870188
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6280720250618999434}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000030517578}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1646391619269826013}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &848155543013578792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6280720250618999434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AITrafficGizmoSettings: {fileID: 11400000, guid: 11e40ae9f0b146a6ae922fd037a04cec, type: 2}
-  waypointDataList:
-  - _name: AITrafficWaypoint 1
-    _transform: {fileID: 0}
-    _waypoint: {fileID: 0}
-  useSpawnPoints: 0
-  spawnTrafficVehicles: []
-  routeInfo: {fileID: 0}
-  maxDensity: 10
-  currentDensity: 0
-  previousDensity: 0
-  spawnpoints: []
---- !u!114 &874354039681681209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6280720250618999434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopForTrafficLight: 0
 --- !u!1 &6414495014720718879
 GameObject:
   m_ObjectHideFlags: 0
@@ -4847,75 +4636,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &8522182296184459869
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5020570043257846809}
-  - component: {fileID: 9128980613714371185}
-  - component: {fileID: 1260326084380269799}
-  m_Layer: 0
-  m_Name: AITrafficWaypointRoute
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5020570043257846809
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8522182296184459869}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000030517578}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1646391619269826013}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9128980613714371185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8522182296184459869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f388f4adeb0417a82b8aebb4c7872c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AITrafficGizmoSettings: {fileID: 11400000, guid: 11e40ae9f0b146a6ae922fd037a04cec, type: 2}
-  waypointDataList:
-  - _name: AITrafficWaypoint 1
-    _transform: {fileID: 0}
-    _waypoint: {fileID: 0}
-  useSpawnPoints: 0
-  spawnTrafficVehicles: []
-  routeInfo: {fileID: 0}
-  maxDensity: 10
-  currentDensity: 0
-  previousDensity: 0
-  spawnpoints: []
---- !u!114 &1260326084380269799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8522182296184459869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02035ed10f614614ad7117b0f30bd02f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopForTrafficLight: 0
 --- !u!1 &8618414674651522627
 GameObject:
   m_ObjectHideFlags: 0
@@ -5517,7 +5237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 441798, guid: 06a9858b4309bcf4cbe7ef09ae436c1d, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 441798, guid: 06a9858b4309bcf4cbe7ef09ae436c1d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5579,7 +5299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 441798, guid: 06a9858b4309bcf4cbe7ef09ae436c1d, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 441798, guid: 06a9858b4309bcf4cbe7ef09ae436c1d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5848,7 +5568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 441798, guid: 06a9858b4309bcf4cbe7ef09ae436c1d, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 441798, guid: 06a9858b4309bcf4cbe7ef09ae436c1d, type: 3}
       propertyPath: m_LocalPosition.x
