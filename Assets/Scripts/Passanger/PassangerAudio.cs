@@ -51,6 +51,9 @@ public class PassangerAudio : MonoBehaviour
     {
         AudioClip nClip = null;
 
+        if (destination == Location.locationArea.Null)
+            return null;
+
 
         if (destination == Location.locationArea.Downtown)
         {

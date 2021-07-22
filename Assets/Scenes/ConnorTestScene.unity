@@ -3297,7 +3297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPassangerAmount: 2
-  despawnDistance: 500
+  despawnDistance: 10
   spawnDistance: 300
   passanger: {fileID: 2609015464147598914, guid: 48d481aaf66243542b216c2bca002f5f, type: 3}
 --- !u!114 &1350665252

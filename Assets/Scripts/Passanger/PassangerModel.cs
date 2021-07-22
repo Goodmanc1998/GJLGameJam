@@ -27,11 +27,11 @@ public class PassangerModel : MonoBehaviour
 
     void PickModel()
     {
-        int decider = Mathf.RoundToInt(Random.Range(0, 2));
+        int decider = Mathf.RoundToInt(Random.Range(0, 1));
 
         if (decider == 0)
         {
-            male = false;
+            male = true;
 
             int i = Random.Range(0, maleCharacters.Length);
             maleCharacters[i].SetActive(true);
@@ -39,7 +39,7 @@ public class PassangerModel : MonoBehaviour
         }
         else
         {
-            male = true;
+            male = false;
 
             int i = Random.Range(0, femaleCharacters.Length);
             femaleCharacters[i].SetActive(true);

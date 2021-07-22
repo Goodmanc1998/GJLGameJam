@@ -8,8 +8,8 @@ public class Passanger : MonoBehaviour
     Location startingLocation = null;
     Location finishingLocation;
 
-    public float minCarDistance;
-    public float minCarSpeed;
+    float minCarDistance;
+    float minCarSpeed;
 
     float travelDist;
 
@@ -23,6 +23,9 @@ public class Passanger : MonoBehaviour
         SetLocations();
 
         player = Car.Instance.GetComponent<Rigidbody>();
+
+        minCarDistance = PassangerManager.Instance.minCarDistance;
+        minCarSpeed = PassangerManager.Instance.minCarSpeed;
 
     }
 
@@ -145,6 +148,11 @@ public class Passanger : MonoBehaviour
     public Location GetFinishingLocation()
     {
         return finishingLocation;
+    }
+
+    public Location GetStartingLocation()
+    {
+        return startingLocation;
     }
 
     public Transform GetDestination()

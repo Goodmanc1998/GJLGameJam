@@ -76,8 +76,6 @@ public class LocationManager : MonoBehaviour
 
         }
 
-        Debug.Log(locations.Length);
-
         GameManager.onGameEvent(GameEvents.LOCATIONS_COLLECTED);
     }
 

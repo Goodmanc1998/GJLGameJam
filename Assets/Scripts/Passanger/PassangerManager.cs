@@ -10,6 +10,10 @@ public class PassangerManager : MonoBehaviour
     public float spawnDistance;
     int currentPassangerAmount;
 
+    public float minCarDistance;
+    public float minCarSpeed;
+
+
     LocationManager locationMGR;
     public GameObject passanger;
 
@@ -66,6 +70,7 @@ public class PassangerManager : MonoBehaviour
         {
             if(Vector3.Distance(p.transform.position, Car.Instance.transform.position) > despawnDistance)
             {
+                p.GetStartingLocation().SetOccupied(false);
                 Destroy(p.gameObject);
                 removed++;
             }

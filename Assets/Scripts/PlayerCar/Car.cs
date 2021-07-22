@@ -76,9 +76,6 @@ public class Car : MonoBehaviour
             StartCoroutine(PlaySoundArray(clipArray));
         }
 
-
-
-
     }
 
     IEnumerator PlaySoundArray(AudioClip[] clips)
