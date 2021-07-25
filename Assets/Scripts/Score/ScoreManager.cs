@@ -58,7 +58,28 @@ public class ScoreManager : MonoBehaviour
 
     public void IncreaseScore(float nScore)
     {
-        currentScore += nScore;
+        StartCoroutine(LerpScore(nScore));
+
+        Debug.Log("INCREASING SCORE : " + nScore);
+    }
+
+    IEnumerator LerpScore(float nScore)
+    {
+        float timePassed = 0;
+
+        float startingScore = currentScore;
+        float changedScore = currentScore + nScore;
+
+        while(timePassed < 2)
+        {
+            currentScore = Mathf.Lerp(startingScore, changedScore, timePassed / 2);
+
+            timePassed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        currentScore = changedScore;
     }
 
     public void IncreaseScoreTime(float nScore)

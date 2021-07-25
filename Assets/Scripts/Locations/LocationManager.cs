@@ -112,7 +112,7 @@ public class LocationManager : MonoBehaviour
         {
             int rndNo = Random.Range(0, finishingLocations.Count);
 
-            if(startLoc != finishingLocations[rndNo])
+            if(startLoc != finishingLocations[rndNo] && Vector3.Distance(startLoc.transform.position, finishingLocations[rndNo].transform.position) < 700)
                 locationToReturn = finishingLocations[rndNo];
         }
         

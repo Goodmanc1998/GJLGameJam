@@ -13,7 +13,16 @@ public class Hand : MonoBehaviour
 
     public RectTransform canvasRect;
 
+    private void Awake()
+    {
+        GameManager.onGameEvent += Event;
 
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameEvent -= Event;
+    }
     void Start()
     {
         canvasRect = theCanvas.transform.GetComponent<RectTransform>();
@@ -38,12 +47,22 @@ public class Hand : MonoBehaviour
         //handRect.position = new Vector2(Input.mousePosition.x - canvasRect.sizeDelta.x / 2f + (offset.x), Input.mousePosition.y - canvasRect.sizeDelta.y / 2f + (offset.y));
         Vector2 objPos = new Vector2();
 
-        objPos.x = Mathf.Clamp(Input.mousePosition.x, -canvasRect.rect.width, canvasRect.rect.width);
-        objPos.y = Mathf.Clamp(Input.mousePosition.y, -canvasRect.rect.height, canvasRect.rect.height);
-        
+        objPos.x = Input.mousePosition.x + offset.x;
+        objPos.y = Input.mousePosition.y + offset.y;
+
+        objPos.y = Mathf.Clamp(objPos.y, 0, Screen.height / 2);
+
         transform.position = objPos;
 
         
+    }
+
+    void Event(GameEvents currEvent)
+    {
+        if (currEvent != GameEvents.GAME_OVER)
+            return;
+
+        Destroy(this.gameObject);
     }
    
 }

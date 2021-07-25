@@ -109,7 +109,7 @@ public class SteeringWheel : MonoBehaviour
 
     void PlayHorn()
     {
-        if(!audioSource.isPlaying && wheelBeingHeld)
+        if(!audioSource.isPlaying && wheelBeingHeld && active)
         {
             audioSource.Play();
 

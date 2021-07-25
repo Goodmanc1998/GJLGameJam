@@ -64,6 +64,10 @@ public class GameClock : MonoBehaviour
         {
             dropOffTime -= Time.deltaTime;
         }
+        else if (Car.Instance.GetPassanger() == null)
+        {
+            dropOffTime = 0;
+        }
 
 
         if(shiftTimeLeft <= 0 && Car.Instance.GetPassanger() == null || dropOffTime <= 0 && Car.Instance.GetPassanger() != null)

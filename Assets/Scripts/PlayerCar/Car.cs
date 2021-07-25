@@ -6,9 +6,10 @@ public class Car : MonoBehaviour
 {
     public CarController Controller;
     public NavigationArrow navigation;
+    public SteeringWheel steeringWheel;
 
     public AudioClip doorOpening, doorClosing, seatbelt;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
 
     public Passanger currPassanger;
@@ -40,8 +41,7 @@ public class Car : MonoBehaviour
 
     private void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
+
     }
 
     private void Update()
@@ -64,17 +64,19 @@ public class Car : MonoBehaviour
 
     void GettingInCar(GameEvents currEvent)
     {
-        
+
         if (currEvent == GameEvents.ENTERING_CAR)
         {
             AudioClip[] clipArray = new AudioClip[] { doorOpening, doorClosing, seatbelt, PassangerAudio.Instance.GetDestinationAudio(currPassanger.GetComponentInChildren<PassangerModel>().male, currPassanger.GetFinishingLocation().GetLocationArea()) };
             StartCoroutine(PlaySoundArray(clipArray));
         }
-        else if(currEvent == GameEvents.PASSANGER_DROPPED_OFF)
+        else if (currEvent == GameEvents.PASSANGER_DROPPED_OFF)
         {
-            AudioClip[] clipArray = new AudioClip[] { seatbelt, doorOpening, doorClosing};
+            AudioClip[] clipArray = new AudioClip[] { seatbelt, doorOpening, doorClosing };
             StartCoroutine(PlaySoundArray(clipArray));
         }
+        else if (currEvent == GameEvents.GAME_OVER)
+            steeringWheel.active = false;
 
     }
 

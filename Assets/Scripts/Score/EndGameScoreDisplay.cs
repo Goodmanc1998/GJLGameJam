@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class EndGameScoreDisplay : MonoBehaviour
 {
 
+    public GameObject menuObject;
+
     public Text totalScoretxt;
     public Text totalPassangers;
 
@@ -27,10 +29,7 @@ public class EndGameScoreDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        totalScoretxt.gameObject.SetActive(false);
-        totalPassangers.gameObject.SetActive(false);
-        menuBtn.gameObject.SetActive(false);
-        retryBtn.gameObject.SetActive(false);
+        menuObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,13 +42,10 @@ public class EndGameScoreDisplay : MonoBehaviour
         if (currEvent != GameEvents.GAME_OVER)
             return;
 
-        totalScoretxt.gameObject.SetActive(true);
-        totalPassangers.gameObject.SetActive(true);
+        menuObject.SetActive(true);
 
-        menuBtn.gameObject.SetActive(true);
-        retryBtn.gameObject.SetActive(true);
 
-        totalScoretxt.text = "Total Score : " + ScoreManager.Instance.currentScore;
+        totalScoretxt.text = "Total Score : " + Mathf.RoundToInt(ScoreManager.Instance.currentScore);
 
         totalPassangers.text = "Total Passangers : " + ScoreManager.Instance.passangersDroppedOff;
 

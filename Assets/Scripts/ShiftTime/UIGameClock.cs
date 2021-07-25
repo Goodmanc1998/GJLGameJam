@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIGameClock : MonoBehaviour
 {
 
-    public Text shiftTime;
-    public Text fairTime;
+    public TMP_Text shiftTime;
+    public TMP_Text fairTime;
 
     GameClock clock;
 
@@ -27,46 +28,95 @@ public class UIGameClock : MonoBehaviour
     {
         clock = GameClock.Instance;
 
-        fairTime.color = new Color(fairTime.color.r, fairTime.color.g, fairTime.color.b, 0);
+        //fairTime.color = new Color(fairTime.color.r, fairTime.color.g, fairTime.color.b, 0);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void FixedUpdate()
     {
-        int ShiftM = Mathf.RoundToInt(clock.GetMinuetsShiftTime());
-        int shiftS = Mathf.RoundToInt(clock.GetSecondsShiftTime());
+        SetUpDropTime();
+        SetUpFairTime();
+    }
 
-        int FairM = Mathf.RoundToInt(clock.GetMinuetsFairTime());
-        int FairS = Mathf.RoundToInt(clock.GetSecondsFairTime());
+    void SetUpFairTime()
+    {
+        string shiftSecondsString = "";
+        int shiftSecondsInt = Mathf.RoundToInt(clock.GetSecondsShiftTime());
 
-        if (shiftS < 10)
+        if (shiftSecondsInt < 10)
         {
-            shiftTime.text = ShiftM + " : 0" + shiftS;
+            shiftSecondsString = "0" + shiftSecondsInt;
+        }
+        else if(shiftSecondsInt <= 0)
+        {
+            shiftSecondsString = "00";
         }
         else
         {
-            shiftTime.text = ShiftM + " : " + shiftS;
+            shiftSecondsString = shiftSecondsInt.ToString();
         }
 
-        if (FairS < 10)
+        string shiftMinsString = "";
+        int shiftMinsInt = Mathf.RoundToInt(clock.GetMinuetsShiftTime());
+
+        if (shiftSecondsInt < 10)
         {
-            fairTime.text = FairM + " : 0" + FairS;
+            shiftMinsString = "0" + shiftMinsInt;
+        }
+        else if (shiftSecondsInt <= 0)
+        {
+            shiftSecondsString = "00";
         }
         else
         {
-            fairTime.text = FairM + " : " + FairS;
+            shiftMinsString = shiftMinsInt.ToString();
         }
+
+        shiftTime.text = shiftMinsString + " : " + shiftSecondsString;
+    }
+
+    void SetUpDropTime()
+    {
+        string dpSecondsString = "";
+        int dpSecondsInt = Mathf.RoundToInt(clock.GetSecondsFairTime());
+
+        if (dpSecondsInt < 10)
+        {
+            dpSecondsString = "0" + dpSecondsInt;
+        }
+        else if (dpSecondsInt <= 0)
+        {
+            dpSecondsString = "00";
+        }
+        else
+        {
+            dpSecondsString = dpSecondsInt.ToString();
+        }
+
+        string dpMinsString = "";
+        int dpMinsInt = Mathf.RoundToInt(clock.GetMinuetsFairTime());
+
+        if (dpMinsInt < 10)
+        {
+            dpMinsString = "0" + dpMinsInt;
+        }
+        else if (dpMinsInt <= 0)
+        {
+            dpMinsString = "00";
+        }
+        else
+        {
+            dpMinsString = dpMinsInt.ToString();
+        }
+
+        fairTime.text = dpMinsString + " : " + dpSecondsString;
+
 
     }
 
-    
+
     void Event(GameEvents currEvent)
     {
-        if (currEvent == GameEvents.ENTERING_CAR)
-            fairTime.color = new Color(fairTime.color.r, fairTime.color.g, fairTime.color.b, 1);
-
-        if (currEvent == GameEvents.PASSANGER_DROPPED_OFF || currEvent == GameEvents.GAME_OVER)
-            fairTime.color = new Color(fairTime.color.r, fairTime.color.g, fairTime.color.b, 0);
 
         if(currEvent == GameEvents.GAME_OVER)
         {
